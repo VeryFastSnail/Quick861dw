@@ -24,3 +24,7 @@ Here is the list of interesting parts:
   
 **Schematics**
 I tried to draw schematics of it as simple as possible for firmware so it's still work in progress, but this is what I have right now.
+
+![schematic_image](https://raw.githubusercontent.com/VeryFastSnail/Quick861dw/master/Pictures/MCU_pinout.jpg)
+
+There are more, but for now I only share main mcu.
