@@ -19,8 +19,7 @@ Here is the list of interesting parts:
  - OPAMP - OP07C
  - TRIAC - BTA41600B
  - TRIAC controller - MOC3041
- - LCD - Custom segment LCD, I suspect it uses EDS803 driver or something similar
-  All other components are simple resistors transistors and other random stuff
+ - LCD - Custom segment LCD,It uses **HT1621**, I confirmed that by using arduino as controller. managed to get full screen light up. :)
   
 **Schematics**
 I tried to draw schematics of it as simple as possible for firmware so it's still work in progress, but this is what I have right now.
