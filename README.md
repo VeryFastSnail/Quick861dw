@@ -15,11 +15,11 @@ Quick 861DW is cheap (sub $300) and it's great value for the money. But there ar
 Station has many parts that are jelly bean. So datasheets are commonly available.
 Here is the list of interesting parts:
 
- - MCU - ATMEGA16A 
- - OPAMP - OP07C
- - TRIAC - BTA41600B
- - TRIAC controller - MOC3041
- - LCD - Custom segment LCD,It uses **HT1621**, I confirmed that by using arduino as controller. managed to get full screen light up. :)
+ - MCU - ATMEGA16A (https://bit.ly/2Upjbax)
+ - OPAMP - OP07C (https://bit.ly/37QMXZD)
+ - TRIAC - BTA41600B (https://bit.ly/2OhCWg8)
+ - TRIAC controller - MOC3041 (https://bit.ly/2GLg3O1)
+ - LCD - Custom segment LCD,It uses **HT1621**, I confirmed that by using arduino as controller. managed to get full screen light up. :) (https://bit.ly/31jT1au)
   
 **Schematics**
 I tried to draw schematics of it as simple as possible for firmware so it's still work in progress, but this is what I have right now.
