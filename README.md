@@ -27,3 +27,15 @@ I tried to draw schematics of it as simple as possible for firmware so it's stil
 ![schematic_image](https://raw.githubusercontent.com/VeryFastSnail/Quick861dw/master/Pictures/MCU_pinout.jpg)
 
 There are more, but for now I only share main mcu.
+
+
+**Planned features**
+
+I would love to get more features, such like:
+ - serial communication with pc
+ - more channels that could be stored on pc or eeprom and use external buttons that connect via cable
+ - virtual lcd screen on pc for capture (hint: youtube creators)
+ - custom config menu on pc and station itself
+ - easier calibration via pc or station itself
+ - real time temperature display on screen (configurable)
+ - heating element on/off time on lcd (configurable)
