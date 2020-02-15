@@ -128,12 +128,6 @@
     <Compile Include="global.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="LCD.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="LCD.h">
-      <SubType>compile</SubType>
-    </Compile>
     <Compile Include="Libs\Buttons\Buttons.c">
       <SubType>compile</SubType>
     </Compile>
@@ -144,6 +138,12 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Libs\Buzzer\Buzzer.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Libs\LCD\LCD.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Libs\LCD\LCD.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Libs\Memory\Memory.c">
@@ -167,6 +167,7 @@
     <Folder Include="Libs\Buttons" />
     <Folder Include="Libs\Buzzer" />
     <Folder Include="Libs\Memory" />
+    <Folder Include="Libs\LCD" />
     <Folder Include="Libs\Temperature" />
   </ItemGroup>
   <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />

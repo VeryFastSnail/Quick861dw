@@ -3,10 +3,11 @@
 #include "global.h"
 #include <avr/interrupt.h>
 #include <util/delay.h>
-#include "LCD.h"
+#include "Libs/LCD/LCD.h"
 #include "Libs/Buzzer/Buzzer.h"
 #include "Libs/Buttons/Buttons.h"
 	
+//test var
 int temp=100;
 	
 int main()

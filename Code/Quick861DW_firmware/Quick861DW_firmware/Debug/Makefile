@@ -37,14 +37,15 @@ SUBDIRS :=  \
 ../Libs/Buttons \
 ../Libs/Buzzer \
 ../Libs/Memory \
+../Libs/LCD \
 ../Libs/Temperature
 
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
-../LCD.c \
 ../Libs/Buttons/Buttons.c \
 ../Libs/Buzzer/Buzzer.c \
+../Libs/LCD/LCD.c \
 ../Libs/Memory/Memory.c \
 ../Libs/Temperature/Temperature.c \
 ../main.c
@@ -57,33 +58,33 @@ ASM_SRCS +=
 
 
 OBJS +=  \
-LCD.o \
 Libs/Buttons/Buttons.o \
 Libs/Buzzer/Buzzer.o \
+Libs/LCD/LCD.o \
 Libs/Memory/Memory.o \
 Libs/Temperature/Temperature.o \
 main.o
 
 OBJS_AS_ARGS +=  \
-LCD.o \
 Libs/Buttons/Buttons.o \
 Libs/Buzzer/Buzzer.o \
+Libs/LCD/LCD.o \
 Libs/Memory/Memory.o \
 Libs/Temperature/Temperature.o \
 main.o
 
 C_DEPS +=  \
-LCD.d \
 Libs/Buttons/Buttons.d \
 Libs/Buzzer/Buzzer.d \
+Libs/LCD/LCD.d \
 Libs/Memory/Memory.d \
 Libs/Temperature/Temperature.d \
 main.d
 
 C_DEPS_AS_ARGS +=  \
-LCD.d \
 Libs/Buttons/Buttons.d \
 Libs/Buzzer/Buzzer.d \
+Libs/LCD/LCD.d \
 Libs/Memory/Memory.d \
 Libs/Temperature/Temperature.d \
 main.d
@@ -102,13 +103,6 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
-./LCD.o: .././LCD.c
-	@echo Building file: $<
-	@echo Invoking: AVR/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega16 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\gcc\dev\atmega16" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
-	@echo Finished building: $<
-	
-
 Libs/Buttons/Buttons.o: ../Libs/Buttons/Buttons.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
@@ -117,6 +111,13 @@ Libs/Buttons/Buttons.o: ../Libs/Buttons/Buttons.c
 	
 
 Libs/Buzzer/Buzzer.o: ../Libs/Buzzer/Buzzer.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega16 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\gcc\dev\atmega16" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+Libs/LCD/LCD.o: ../Libs/LCD/LCD.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega16 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\gcc\dev\atmega16" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

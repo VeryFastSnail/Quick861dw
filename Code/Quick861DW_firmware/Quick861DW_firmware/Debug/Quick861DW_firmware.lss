@@ -17,15 +17,15 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING
   6 .debug_abbrev 00000949  00000000  00000000  000015b5  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_line   000008e3  00000000  00000000  00001efe  2**0
+  7 .debug_line   000008f8  00000000  00000000  00001efe  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_frame  000001e4  00000000  00000000  000027e4  2**2
+  8 .debug_frame  000001e4  00000000  00000000  000027f8  2**2
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    000004d1  00000000  00000000  000029c8  2**0
+  9 .debug_str    000004d8  00000000  00000000  000029dc  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_loc    0000063d  00000000  00000000  00002e99  2**0
+ 10 .debug_loc    0000063d  00000000  00000000  00002eb4  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_ranges 000000b8  00000000  00000000  000034d6  2**0
+ 11 .debug_ranges 000000b8  00000000  00000000  000034f1  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -79,411 +79,411 @@ Disassembly of section .text:
 0000007e <__bad_interrupt>:
   7e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
 
-00000082 <LCDSendBit>:
-	LCDSendCmd(LCD_ComMode);
-	LCDSendCmd(LCD_LCD_on);
-}
-void LCDdisplayDigit(int digit, int address){
-	if(!(digit > 9 || digit < 0) && !(address < 0 || address > 16)) {
-		LCDWrite(address, numbers[digit]);
-  82:	66 23       	and	r22, r22
-  84:	61 f0       	breq	.+24     	; 0x9e <LCDSendBit+0x1c>
-  86:	90 e0       	ldi	r25, 0x00	; 0
-  88:	c2 98       	cbi	0x18, 2	; 24
-  8a:	88 23       	and	r24, r24
-  8c:	14 f4       	brge	.+4      	; 0x92 <LCDSendBit+0x10>
-  8e:	c1 9a       	sbi	0x18, 1	; 24
-  90:	01 c0       	rjmp	.+2      	; 0x94 <LCDSendBit+0x12>
-  92:	c1 98       	cbi	0x18, 1	; 24
-  94:	c2 9a       	sbi	0x18, 2	; 24
-  96:	88 0f       	add	r24, r24
-  98:	9f 5f       	subi	r25, 0xFF	; 255
-  9a:	69 13       	cpse	r22, r25
-  9c:	f5 cf       	rjmp	.-22     	; 0x88 <LCDSendBit+0x6>
-  9e:	08 95       	ret
-
-000000a0 <LCDSendCmd>:
-  a0:	cf 93       	push	r28
-  a2:	c8 2f       	mov	r28, r24
-  a4:	c3 98       	cbi	0x18, 3	; 24
-  a6:	64 e0       	ldi	r22, 0x04	; 4
-  a8:	80 e8       	ldi	r24, 0x80	; 128
-  aa:	0e 94 41 00 	call	0x82	; 0x82 <LCDSendBit>
-  ae:	68 e0       	ldi	r22, 0x08	; 8
-  b0:	8c 2f       	mov	r24, r28
-  b2:	0e 94 41 00 	call	0x82	; 0x82 <LCDSendBit>
-  b6:	c3 9a       	sbi	0x18, 3	; 24
-  b8:	cf 91       	pop	r28
-  ba:	08 95       	ret
-
-000000bc <LCDWrite>:
-  bc:	cf 93       	push	r28
-  be:	df 93       	push	r29
-  c0:	d8 2f       	mov	r29, r24
-  c2:	c6 2f       	mov	r28, r22
-  c4:	c3 98       	cbi	0x18, 3	; 24
-  c6:	63 e0       	ldi	r22, 0x03	; 3
-  c8:	80 ea       	ldi	r24, 0xA0	; 160
-  ca:	0e 94 41 00 	call	0x82	; 0x82 <LCDSendBit>
-  ce:	66 e0       	ldi	r22, 0x06	; 6
-  d0:	8d 2f       	mov	r24, r29
-  d2:	88 0f       	add	r24, r24
-  d4:	88 0f       	add	r24, r24
-  d6:	0e 94 41 00 	call	0x82	; 0x82 <LCDSendBit>
-  da:	68 e0       	ldi	r22, 0x08	; 8
-  dc:	8c 2f       	mov	r24, r28
-  de:	0e 94 41 00 	call	0x82	; 0x82 <LCDSendBit>
-  e2:	c3 9a       	sbi	0x18, 3	; 24
-  e4:	df 91       	pop	r29
-  e6:	cf 91       	pop	r28
-  e8:	08 95       	ret
-
-000000ea <LCDAllSegementsOff>:
-  ea:	cf 93       	push	r28
-  ec:	df 93       	push	r29
-  ee:	88 23       	and	r24, r24
-  f0:	51 f0       	breq	.+20     	; 0x106 <LCDAllSegementsOff+0x1c>
-  f2:	d8 2f       	mov	r29, r24
-  f4:	c0 e0       	ldi	r28, 0x00	; 0
-  f6:	60 e0       	ldi	r22, 0x00	; 0
-  f8:	8c 2f       	mov	r24, r28
-  fa:	88 0f       	add	r24, r24
-  fc:	0e 94 5e 00 	call	0xbc	; 0xbc <LCDWrite>
- 100:	cf 5f       	subi	r28, 0xFF	; 255
- 102:	dc 13       	cpse	r29, r28
- 104:	f8 cf       	rjmp	.-16     	; 0xf6 <LCDAllSegementsOff+0xc>
- 106:	df 91       	pop	r29
- 108:	cf 91       	pop	r28
- 10a:	08 95       	ret
-
-0000010c <LCDSetPins>:
- 10c:	ba 9a       	sbi	0x17, 2	; 23
- 10e:	bb 9a       	sbi	0x17, 3	; 23
- 110:	b9 9a       	sbi	0x17, 1	; 23
- 112:	08 95       	ret
-
-00000114 <LCDInit>:
- 114:	82 e0       	ldi	r24, 0x02	; 2
- 116:	0e 94 50 00 	call	0xa0	; 0xa0 <LCDSendCmd>
- 11a:	80 e3       	ldi	r24, 0x30	; 48
- 11c:	0e 94 50 00 	call	0xa0	; 0xa0 <LCDSendCmd>
- 120:	82 e5       	ldi	r24, 0x52	; 82
- 122:	0e 94 50 00 	call	0xa0	; 0xa0 <LCDSendCmd>
- 126:	86 e0       	ldi	r24, 0x06	; 6
- 128:	0e 94 50 00 	call	0xa0	; 0xa0 <LCDSendCmd>
- 12c:	08 95       	ret
-
-0000012e <LCDdisplayTemp>:
-	}
-}
-
-void LCDdisplayTemp(int temp){
- 12e:	0f 93       	push	r16
- 130:	1f 93       	push	r17
- 132:	cf 93       	push	r28
- 134:	df 93       	push	r29
- 136:	00 d0       	rcall	.+0      	; 0x138 <LCDdisplayTemp+0xa>
- 138:	00 d0       	rcall	.+0      	; 0x13a <LCDdisplayTemp+0xc>
- 13a:	00 d0       	rcall	.+0      	; 0x13c <LCDdisplayTemp+0xe>
- 13c:	cd b7       	in	r28, 0x3d	; 61
- 13e:	de b7       	in	r29, 0x3e	; 62
-			
-	//@todo implement individual digit check if changed check
-	
-	if(!(temp < 100 || temp > 500)){
- 140:	9c 01       	movw	r18, r24
- 142:	24 56       	subi	r18, 0x64	; 100
- 144:	31 09       	sbc	r19, r1
- 146:	21 39       	cpi	r18, 0x91	; 145
- 148:	31 40       	sbci	r19, 0x01	; 1
- 14a:	48 f5       	brcc	.+82     	; 0x19e <LCDdisplayTemp+0x70>
- 14c:	fe 01       	movw	r30, r28
- 14e:	39 96       	adiw	r30, 0x09	; 9
- 150:	8e 01       	movw	r16, r28
- 152:	0f 5f       	subi	r16, 0xFF	; 255
- 154:	1f 4f       	sbci	r17, 0xFF	; 255
-		
-		int digits[3];
-		
-		for (int i = 3; i >= 0; i--) {
-			digits[i] = temp % 10;
- 156:	2a e0       	ldi	r18, 0x0A	; 10
- 158:	30 e0       	ldi	r19, 0x00	; 0
- 15a:	b9 01       	movw	r22, r18
- 15c:	0e 94 c4 01 	call	0x388	; 0x388 <__divmodhi4>
- 160:	92 93       	st	-Z, r25
- 162:	82 93       	st	-Z, r24
-			temp /= 10;
- 164:	86 2f       	mov	r24, r22
- 166:	97 2f       	mov	r25, r23
-	
-	if(!(temp < 100 || temp > 500)){
-		
-		int digits[3];
-		
-		for (int i = 3; i >= 0; i--) {
- 168:	0e 17       	cp	r16, r30
- 16a:	1f 07       	cpc	r17, r31
- 16c:	b1 f7       	brne	.-20     	; 0x15a <LCDdisplayTemp+0x2c>
-			digits[i] = temp % 10;
-			temp /= 10;
-		}
-		
-		LCDWrite(2, numbers[digits[1]]);
- 16e:	eb 81       	ldd	r30, Y+3	; 0x03
- 170:	fc 81       	ldd	r31, Y+4	; 0x04
- 172:	ee 59       	subi	r30, 0x9E	; 158
- 174:	ff 4f       	sbci	r31, 0xFF	; 255
- 176:	60 81       	ld	r22, Z
- 178:	82 e0       	ldi	r24, 0x02	; 2
- 17a:	0e 94 5e 00 	call	0xbc	; 0xbc <LCDWrite>
-		LCDWrite(4, numbers[digits[2]]);
- 17e:	ed 81       	ldd	r30, Y+5	; 0x05
- 180:	fe 81       	ldd	r31, Y+6	; 0x06
- 182:	ee 59       	subi	r30, 0x9E	; 158
- 184:	ff 4f       	sbci	r31, 0xFF	; 255
- 186:	60 81       	ld	r22, Z
- 188:	84 e0       	ldi	r24, 0x04	; 4
- 18a:	0e 94 5e 00 	call	0xbc	; 0xbc <LCDWrite>
-		LCDWrite(6, numbers[digits[3]]);
- 18e:	ef 81       	ldd	r30, Y+7	; 0x07
- 190:	f8 85       	ldd	r31, Y+8	; 0x08
- 192:	ee 59       	subi	r30, 0x9E	; 158
- 194:	ff 4f       	sbci	r31, 0xFF	; 255
- 196:	60 81       	ld	r22, Z
- 198:	86 e0       	ldi	r24, 0x06	; 6
- 19a:	0e 94 5e 00 	call	0xbc	; 0xbc <LCDWrite>
-	}
-}
- 19e:	26 96       	adiw	r28, 0x06	; 6
- 1a0:	0f b6       	in	r0, 0x3f	; 63
- 1a2:	f8 94       	cli
- 1a4:	de bf       	out	0x3e, r29	; 62
- 1a6:	0f be       	out	0x3f, r0	; 63
- 1a8:	cd bf       	out	0x3d, r28	; 61
- 1aa:	df 91       	pop	r29
- 1ac:	cf 91       	pop	r28
- 1ae:	1f 91       	pop	r17
- 1b0:	0f 91       	pop	r16
- 1b2:	08 95       	ret
-
-000001b4 <LCDdisplayAir>:
-
-void LCDdisplayAir(int speed){
- 1b4:	0f 93       	push	r16
- 1b6:	1f 93       	push	r17
- 1b8:	cf 93       	push	r28
- 1ba:	df 93       	push	r29
- 1bc:	00 d0       	rcall	.+0      	; 0x1be <LCDdisplayAir+0xa>
- 1be:	00 d0       	rcall	.+0      	; 0x1c0 <LCDdisplayAir+0xc>
- 1c0:	00 d0       	rcall	.+0      	; 0x1c2 <LCDdisplayAir+0xe>
- 1c2:	cd b7       	in	r28, 0x3d	; 61
- 1c4:	de b7       	in	r29, 0x3e	; 62
-	
-	//@todo implement individual digit check if changed check
-	
-	if(!(speed < 100 || speed > 500)){
- 1c6:	9c 01       	movw	r18, r24
- 1c8:	24 56       	subi	r18, 0x64	; 100
- 1ca:	31 09       	sbc	r19, r1
- 1cc:	21 39       	cpi	r18, 0x91	; 145
- 1ce:	31 40       	sbci	r19, 0x01	; 1
- 1d0:	48 f5       	brcc	.+82     	; 0x224 <LCDdisplayAir+0x70>
- 1d2:	fe 01       	movw	r30, r28
- 1d4:	39 96       	adiw	r30, 0x09	; 9
- 1d6:	8e 01       	movw	r16, r28
- 1d8:	0f 5f       	subi	r16, 0xFF	; 255
- 1da:	1f 4f       	sbci	r17, 0xFF	; 255
-		
-		int digits[3];
-		
-		for (int i = 3; i >= 0; i--) {
-			digits[i] = speed % 10;
- 1dc:	2a e0       	ldi	r18, 0x0A	; 10
- 1de:	30 e0       	ldi	r19, 0x00	; 0
- 1e0:	b9 01       	movw	r22, r18
- 1e2:	0e 94 c4 01 	call	0x388	; 0x388 <__divmodhi4>
- 1e6:	92 93       	st	-Z, r25
- 1e8:	82 93       	st	-Z, r24
-			speed /= 10;
- 1ea:	86 2f       	mov	r24, r22
- 1ec:	97 2f       	mov	r25, r23
-	
-	if(!(speed < 100 || speed > 500)){
-		
-		int digits[3];
-		
-		for (int i = 3; i >= 0; i--) {
- 1ee:	0e 17       	cp	r16, r30
- 1f0:	1f 07       	cpc	r17, r31
- 1f2:	b1 f7       	brne	.-20     	; 0x1e0 <LCDdisplayAir+0x2c>
-			digits[i] = speed % 10;
-			speed /= 10;
-		}
-		
-		LCDWrite(9, numbers[digits[1]]);
- 1f4:	eb 81       	ldd	r30, Y+3	; 0x03
- 1f6:	fc 81       	ldd	r31, Y+4	; 0x04
- 1f8:	ee 59       	subi	r30, 0x9E	; 158
- 1fa:	ff 4f       	sbci	r31, 0xFF	; 255
- 1fc:	60 81       	ld	r22, Z
- 1fe:	89 e0       	ldi	r24, 0x09	; 9
- 200:	0e 94 5e 00 	call	0xbc	; 0xbc <LCDWrite>
-		LCDWrite(11, numbers[digits[2]]);
- 204:	ed 81       	ldd	r30, Y+5	; 0x05
- 206:	fe 81       	ldd	r31, Y+6	; 0x06
- 208:	ee 59       	subi	r30, 0x9E	; 158
- 20a:	ff 4f       	sbci	r31, 0xFF	; 255
- 20c:	60 81       	ld	r22, Z
- 20e:	8b e0       	ldi	r24, 0x0B	; 11
- 210:	0e 94 5e 00 	call	0xbc	; 0xbc <LCDWrite>
-		LCDWrite(13, numbers[digits[3]]);
- 214:	ef 81       	ldd	r30, Y+7	; 0x07
- 216:	f8 85       	ldd	r31, Y+8	; 0x08
- 218:	ee 59       	subi	r30, 0x9E	; 158
- 21a:	ff 4f       	sbci	r31, 0xFF	; 255
- 21c:	60 81       	ld	r22, Z
- 21e:	8d e0       	ldi	r24, 0x0D	; 13
- 220:	0e 94 5e 00 	call	0xbc	; 0xbc <LCDWrite>
-	}
-}
- 224:	26 96       	adiw	r28, 0x06	; 6
- 226:	0f b6       	in	r0, 0x3f	; 63
- 228:	f8 94       	cli
- 22a:	de bf       	out	0x3e, r29	; 62
- 22c:	0f be       	out	0x3f, r0	; 63
- 22e:	cd bf       	out	0x3d, r28	; 61
- 230:	df 91       	pop	r29
- 232:	cf 91       	pop	r28
- 234:	1f 91       	pop	r17
- 236:	0f 91       	pop	r16
- 238:	08 95       	ret
-
-0000023a <LCDdrawSleepIndicators>:
-
-
-void LCDdrawSleepIndicators(){
-	
-	LCDWrite(2, 0x04);
- 23a:	64 e0       	ldi	r22, 0x04	; 4
- 23c:	82 e0       	ldi	r24, 0x02	; 2
- 23e:	0e 94 5e 00 	call	0xbc	; 0xbc <LCDWrite>
-	LCDWrite(4, 0x04);
- 242:	64 e0       	ldi	r22, 0x04	; 4
- 244:	84 e0       	ldi	r24, 0x04	; 4
- 246:	0e 94 5e 00 	call	0xbc	; 0xbc <LCDWrite>
-	LCDWrite(6, 0x04);
- 24a:	64 e0       	ldi	r22, 0x04	; 4
- 24c:	86 e0       	ldi	r24, 0x06	; 6
- 24e:	0e 94 5e 00 	call	0xbc	; 0xbc <LCDWrite>
-	
-	LCDWrite(9, 0x04);
- 252:	64 e0       	ldi	r22, 0x04	; 4
- 254:	89 e0       	ldi	r24, 0x09	; 9
- 256:	0e 94 5e 00 	call	0xbc	; 0xbc <LCDWrite>
-	LCDWrite(11, 0x04);
- 25a:	64 e0       	ldi	r22, 0x04	; 4
- 25c:	8b e0       	ldi	r24, 0x0B	; 11
- 25e:	0e 94 5e 00 	call	0xbc	; 0xbc <LCDWrite>
-	LCDWrite(13, 0x04);
- 262:	64 e0       	ldi	r22, 0x04	; 4
- 264:	8d e0       	ldi	r24, 0x0D	; 13
- 266:	0e 94 5e 00 	call	0xbc	; 0xbc <LCDWrite>
- 26a:	08 95       	ret
-
-0000026c <ButtonsInit>:
+00000082 <ButtonsInit>:
 	
 	//Init buttons : set as input and enable pull up resistors to make debounce bit more easier.
 	
 	//Set internal pull up resistor for control keys 
 	
 	sbi(PORTC, BTN_AIR_UP);
- 26c:	ac 9a       	sbi	0x15, 4	; 21
+  82:	ac 9a       	sbi	0x15, 4	; 21
 	sbi(PORTC, BTN_AIR_DOWN);
- 26e:	ab 9a       	sbi	0x15, 3	; 21
+  84:	ab 9a       	sbi	0x15, 3	; 21
 	sbi(PORTC, BTN_TMP_UP);
- 270:	ad 9a       	sbi	0x15, 5	; 21
+  86:	ad 9a       	sbi	0x15, 5	; 21
 	sbi(PORTC, BTN_TMP_DOWN);
- 272:	ae 9a       	sbi	0x15, 6	; 21
+  88:	ae 9a       	sbi	0x15, 6	; 21
 	
 	//Set internal pull up resistor for presets keys 
 	sbi(PORTC, BTN_PST_3);
- 274:	aa 9a       	sbi	0x15, 2	; 21
+  8a:	aa 9a       	sbi	0x15, 2	; 21
 	sbi(PORTC, BTN_PST_2);
- 276:	a9 9a       	sbi	0x15, 1	; 21
+  8c:	a9 9a       	sbi	0x15, 1	; 21
 	sbi(PORTC, BTN_PST_1);
- 278:	a8 9a       	sbi	0x15, 0	; 21
- 27a:	08 95       	ret
+  8e:	a8 9a       	sbi	0x15, 0	; 21
+  90:	08 95       	ret
 
-0000027c <IsButtonPressed>:
+00000092 <IsButtonPressed>:
 }
 
 int IsButtonPressed(uint8_t btn){
 	if (bit_is_clear(BTN_PIN, btn)){
- 27c:	23 b3       	in	r18, 0x13	; 19
- 27e:	30 e0       	ldi	r19, 0x00	; 0
- 280:	02 c0       	rjmp	.+4      	; 0x286 <IsButtonPressed+0xa>
- 282:	35 95       	asr	r19
- 284:	27 95       	ror	r18
- 286:	8a 95       	dec	r24
- 288:	e2 f7       	brpl	.-8      	; 0x282 <IsButtonPressed+0x6>
- 28a:	20 fd       	sbrc	r18, 0
- 28c:	09 c0       	rjmp	.+18     	; 0x2a0 <IsButtonPressed+0x24>
+  92:	23 b3       	in	r18, 0x13	; 19
+  94:	30 e0       	ldi	r19, 0x00	; 0
+  96:	02 c0       	rjmp	.+4      	; 0x9c <IsButtonPressed+0xa>
+  98:	35 95       	asr	r19
+  9a:	27 95       	ror	r18
+  9c:	8a 95       	dec	r24
+  9e:	e2 f7       	brpl	.-8      	; 0x98 <IsButtonPressed+0x6>
+  a0:	20 fd       	sbrc	r18, 0
+  a2:	09 c0       	rjmp	.+18     	; 0xb6 <IsButtonPressed+0x24>
 	#else
 		//round up by default
 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
 	#endif
 
 	__builtin_avr_delay_cycles(__ticks_dc);
- 28e:	8b e4       	ldi	r24, 0x4B	; 75
- 290:	9d e1       	ldi	r25, 0x1D	; 29
- 292:	01 97       	sbiw	r24, 0x01	; 1
- 294:	f1 f7       	brne	.-4      	; 0x292 <IsButtonPressed+0x16>
- 296:	00 c0       	rjmp	.+0      	; 0x298 <IsButtonPressed+0x1c>
- 298:	00 00       	nop
+  a4:	8b e4       	ldi	r24, 0x4B	; 75
+  a6:	9d e1       	ldi	r25, 0x1D	; 29
+  a8:	01 97       	sbiw	r24, 0x01	; 1
+  aa:	f1 f7       	brne	.-4      	; 0xa8 <IsButtonPressed+0x16>
+  ac:	00 c0       	rjmp	.+0      	; 0xae <IsButtonPressed+0x1c>
+  ae:	00 00       	nop
 		delay(BTN_DEBOUNCE);
 		return 1;
- 29a:	81 e0       	ldi	r24, 0x01	; 1
- 29c:	90 e0       	ldi	r25, 0x00	; 0
- 29e:	08 95       	ret
+  b0:	81 e0       	ldi	r24, 0x01	; 1
+  b2:	90 e0       	ldi	r25, 0x00	; 0
+  b4:	08 95       	ret
 	}
 	return 0;
- 2a0:	80 e0       	ldi	r24, 0x00	; 0
- 2a2:	90 e0       	ldi	r25, 0x00	; 0
+  b6:	80 e0       	ldi	r24, 0x00	; 0
+  b8:	90 e0       	ldi	r25, 0x00	; 0
 }
- 2a4:	08 95       	ret
+  ba:	08 95       	ret
 
-000002a6 <BuzzerInit>:
+000000bc <BuzzerInit>:
 #include "avr/io.h"
 #include <util/delay.h>
 #include "Buzzer.h"
 
 void BuzzerInit(void){
 	sbi(DDRA, BUZZ);
- 2a6:	d7 9a       	sbi	0x1a, 7	; 26
- 2a8:	08 95       	ret
+  bc:	d7 9a       	sbi	0x1a, 7	; 26
+  be:	08 95       	ret
 
-000002aa <BuzzerBeep>:
+000000c0 <BuzzerBeep>:
 }
 
 void BuzzerBeep(int timeMs) {
 	sbi(PORTA, BUZZ);
- 2aa:	df 9a       	sbi	0x1b, 7	; 27
+  c0:	df 9a       	sbi	0x1b, 7	; 27
 		while(timeMs--) {
- 2ac:	00 97       	sbiw	r24, 0x00	; 0
- 2ae:	41 f0       	breq	.+16     	; 0x2c0 <BuzzerBeep+0x16>
- 2b0:	e9 ef       	ldi	r30, 0xF9	; 249
- 2b2:	f0 e0       	ldi	r31, 0x00	; 0
- 2b4:	31 97       	sbiw	r30, 0x01	; 1
- 2b6:	f1 f7       	brne	.-4      	; 0x2b4 <BuzzerBeep+0xa>
- 2b8:	00 c0       	rjmp	.+0      	; 0x2ba <BuzzerBeep+0x10>
- 2ba:	00 00       	nop
- 2bc:	01 97       	sbiw	r24, 0x01	; 1
- 2be:	c1 f7       	brne	.-16     	; 0x2b0 <BuzzerBeep+0x6>
+  c2:	00 97       	sbiw	r24, 0x00	; 0
+  c4:	41 f0       	breq	.+16     	; 0xd6 <BuzzerBeep+0x16>
+  c6:	e9 ef       	ldi	r30, 0xF9	; 249
+  c8:	f0 e0       	ldi	r31, 0x00	; 0
+  ca:	31 97       	sbiw	r30, 0x01	; 1
+  cc:	f1 f7       	brne	.-4      	; 0xca <BuzzerBeep+0xa>
+  ce:	00 c0       	rjmp	.+0      	; 0xd0 <BuzzerBeep+0x10>
+  d0:	00 00       	nop
+  d2:	01 97       	sbiw	r24, 0x01	; 1
+  d4:	c1 f7       	brne	.-16     	; 0xc6 <BuzzerBeep+0x6>
 			delay(1);
 		}
 	cbi(PORTA, BUZZ);
- 2c0:	df 98       	cbi	0x1b, 7	; 27
+  d6:	df 98       	cbi	0x1b, 7	; 27
+  d8:	08 95       	ret
+
+000000da <LCDSendBit>:
+	LCDSendCmd(LCD_ComMode);
+	LCDSendCmd(LCD_LCD_on);
+}
+void LCDdisplayDigit(int digit, int address){
+	if(!(digit > 9 || digit < 0) && !(address < 0 || address > 16)) {
+		LCDWrite(address, numbers[digit]);
+  da:	66 23       	and	r22, r22
+  dc:	61 f0       	breq	.+24     	; 0xf6 <LCDSendBit+0x1c>
+  de:	90 e0       	ldi	r25, 0x00	; 0
+  e0:	c2 98       	cbi	0x18, 2	; 24
+  e2:	88 23       	and	r24, r24
+  e4:	14 f4       	brge	.+4      	; 0xea <LCDSendBit+0x10>
+  e6:	c1 9a       	sbi	0x18, 1	; 24
+  e8:	01 c0       	rjmp	.+2      	; 0xec <LCDSendBit+0x12>
+  ea:	c1 98       	cbi	0x18, 1	; 24
+  ec:	c2 9a       	sbi	0x18, 2	; 24
+  ee:	88 0f       	add	r24, r24
+  f0:	9f 5f       	subi	r25, 0xFF	; 255
+  f2:	69 13       	cpse	r22, r25
+  f4:	f5 cf       	rjmp	.-22     	; 0xe0 <LCDSendBit+0x6>
+  f6:	08 95       	ret
+
+000000f8 <LCDSendCmd>:
+  f8:	cf 93       	push	r28
+  fa:	c8 2f       	mov	r28, r24
+  fc:	c3 98       	cbi	0x18, 3	; 24
+  fe:	64 e0       	ldi	r22, 0x04	; 4
+ 100:	80 e8       	ldi	r24, 0x80	; 128
+ 102:	0e 94 6d 00 	call	0xda	; 0xda <LCDSendBit>
+ 106:	68 e0       	ldi	r22, 0x08	; 8
+ 108:	8c 2f       	mov	r24, r28
+ 10a:	0e 94 6d 00 	call	0xda	; 0xda <LCDSendBit>
+ 10e:	c3 9a       	sbi	0x18, 3	; 24
+ 110:	cf 91       	pop	r28
+ 112:	08 95       	ret
+
+00000114 <LCDWrite>:
+ 114:	cf 93       	push	r28
+ 116:	df 93       	push	r29
+ 118:	d8 2f       	mov	r29, r24
+ 11a:	c6 2f       	mov	r28, r22
+ 11c:	c3 98       	cbi	0x18, 3	; 24
+ 11e:	63 e0       	ldi	r22, 0x03	; 3
+ 120:	80 ea       	ldi	r24, 0xA0	; 160
+ 122:	0e 94 6d 00 	call	0xda	; 0xda <LCDSendBit>
+ 126:	66 e0       	ldi	r22, 0x06	; 6
+ 128:	8d 2f       	mov	r24, r29
+ 12a:	88 0f       	add	r24, r24
+ 12c:	88 0f       	add	r24, r24
+ 12e:	0e 94 6d 00 	call	0xda	; 0xda <LCDSendBit>
+ 132:	68 e0       	ldi	r22, 0x08	; 8
+ 134:	8c 2f       	mov	r24, r28
+ 136:	0e 94 6d 00 	call	0xda	; 0xda <LCDSendBit>
+ 13a:	c3 9a       	sbi	0x18, 3	; 24
+ 13c:	df 91       	pop	r29
+ 13e:	cf 91       	pop	r28
+ 140:	08 95       	ret
+
+00000142 <LCDAllSegementsOff>:
+ 142:	cf 93       	push	r28
+ 144:	df 93       	push	r29
+ 146:	88 23       	and	r24, r24
+ 148:	51 f0       	breq	.+20     	; 0x15e <LCDAllSegementsOff+0x1c>
+ 14a:	d8 2f       	mov	r29, r24
+ 14c:	c0 e0       	ldi	r28, 0x00	; 0
+ 14e:	60 e0       	ldi	r22, 0x00	; 0
+ 150:	8c 2f       	mov	r24, r28
+ 152:	88 0f       	add	r24, r24
+ 154:	0e 94 8a 00 	call	0x114	; 0x114 <LCDWrite>
+ 158:	cf 5f       	subi	r28, 0xFF	; 255
+ 15a:	dc 13       	cpse	r29, r28
+ 15c:	f8 cf       	rjmp	.-16     	; 0x14e <LCDAllSegementsOff+0xc>
+ 15e:	df 91       	pop	r29
+ 160:	cf 91       	pop	r28
+ 162:	08 95       	ret
+
+00000164 <LCDSetPins>:
+ 164:	ba 9a       	sbi	0x17, 2	; 23
+ 166:	bb 9a       	sbi	0x17, 3	; 23
+ 168:	b9 9a       	sbi	0x17, 1	; 23
+ 16a:	08 95       	ret
+
+0000016c <LCDInit>:
+ 16c:	82 e0       	ldi	r24, 0x02	; 2
+ 16e:	0e 94 7c 00 	call	0xf8	; 0xf8 <LCDSendCmd>
+ 172:	80 e3       	ldi	r24, 0x30	; 48
+ 174:	0e 94 7c 00 	call	0xf8	; 0xf8 <LCDSendCmd>
+ 178:	82 e5       	ldi	r24, 0x52	; 82
+ 17a:	0e 94 7c 00 	call	0xf8	; 0xf8 <LCDSendCmd>
+ 17e:	86 e0       	ldi	r24, 0x06	; 6
+ 180:	0e 94 7c 00 	call	0xf8	; 0xf8 <LCDSendCmd>
+ 184:	08 95       	ret
+
+00000186 <LCDdisplayTemp>:
+	}
+}
+
+void LCDdisplayTemp(int temp){
+ 186:	0f 93       	push	r16
+ 188:	1f 93       	push	r17
+ 18a:	cf 93       	push	r28
+ 18c:	df 93       	push	r29
+ 18e:	00 d0       	rcall	.+0      	; 0x190 <LCDdisplayTemp+0xa>
+ 190:	00 d0       	rcall	.+0      	; 0x192 <LCDdisplayTemp+0xc>
+ 192:	00 d0       	rcall	.+0      	; 0x194 <LCDdisplayTemp+0xe>
+ 194:	cd b7       	in	r28, 0x3d	; 61
+ 196:	de b7       	in	r29, 0x3e	; 62
+			
+	//@todo implement individual digit check if changed check
+	
+	if(!(temp < 100 || temp > 500)){
+ 198:	9c 01       	movw	r18, r24
+ 19a:	24 56       	subi	r18, 0x64	; 100
+ 19c:	31 09       	sbc	r19, r1
+ 19e:	21 39       	cpi	r18, 0x91	; 145
+ 1a0:	31 40       	sbci	r19, 0x01	; 1
+ 1a2:	48 f5       	brcc	.+82     	; 0x1f6 <LCDdisplayTemp+0x70>
+ 1a4:	fe 01       	movw	r30, r28
+ 1a6:	39 96       	adiw	r30, 0x09	; 9
+ 1a8:	8e 01       	movw	r16, r28
+ 1aa:	0f 5f       	subi	r16, 0xFF	; 255
+ 1ac:	1f 4f       	sbci	r17, 0xFF	; 255
+		
+		int digits[3];
+		
+		for (int i = 3; i >= 0; i--) {
+			digits[i] = temp % 10;
+ 1ae:	2a e0       	ldi	r18, 0x0A	; 10
+ 1b0:	30 e0       	ldi	r19, 0x00	; 0
+ 1b2:	b9 01       	movw	r22, r18
+ 1b4:	0e 94 c4 01 	call	0x388	; 0x388 <__divmodhi4>
+ 1b8:	92 93       	st	-Z, r25
+ 1ba:	82 93       	st	-Z, r24
+			temp /= 10;
+ 1bc:	86 2f       	mov	r24, r22
+ 1be:	97 2f       	mov	r25, r23
+	
+	if(!(temp < 100 || temp > 500)){
+		
+		int digits[3];
+		
+		for (int i = 3; i >= 0; i--) {
+ 1c0:	0e 17       	cp	r16, r30
+ 1c2:	1f 07       	cpc	r17, r31
+ 1c4:	b1 f7       	brne	.-20     	; 0x1b2 <LCDdisplayTemp+0x2c>
+			digits[i] = temp % 10;
+			temp /= 10;
+		}
+		
+		LCDWrite(2, numbers[digits[1]]);
+ 1c6:	eb 81       	ldd	r30, Y+3	; 0x03
+ 1c8:	fc 81       	ldd	r31, Y+4	; 0x04
+ 1ca:	ee 59       	subi	r30, 0x9E	; 158
+ 1cc:	ff 4f       	sbci	r31, 0xFF	; 255
+ 1ce:	60 81       	ld	r22, Z
+ 1d0:	82 e0       	ldi	r24, 0x02	; 2
+ 1d2:	0e 94 8a 00 	call	0x114	; 0x114 <LCDWrite>
+		LCDWrite(4, numbers[digits[2]]);
+ 1d6:	ed 81       	ldd	r30, Y+5	; 0x05
+ 1d8:	fe 81       	ldd	r31, Y+6	; 0x06
+ 1da:	ee 59       	subi	r30, 0x9E	; 158
+ 1dc:	ff 4f       	sbci	r31, 0xFF	; 255
+ 1de:	60 81       	ld	r22, Z
+ 1e0:	84 e0       	ldi	r24, 0x04	; 4
+ 1e2:	0e 94 8a 00 	call	0x114	; 0x114 <LCDWrite>
+		LCDWrite(6, numbers[digits[3]]);
+ 1e6:	ef 81       	ldd	r30, Y+7	; 0x07
+ 1e8:	f8 85       	ldd	r31, Y+8	; 0x08
+ 1ea:	ee 59       	subi	r30, 0x9E	; 158
+ 1ec:	ff 4f       	sbci	r31, 0xFF	; 255
+ 1ee:	60 81       	ld	r22, Z
+ 1f0:	86 e0       	ldi	r24, 0x06	; 6
+ 1f2:	0e 94 8a 00 	call	0x114	; 0x114 <LCDWrite>
+	}
+}
+ 1f6:	26 96       	adiw	r28, 0x06	; 6
+ 1f8:	0f b6       	in	r0, 0x3f	; 63
+ 1fa:	f8 94       	cli
+ 1fc:	de bf       	out	0x3e, r29	; 62
+ 1fe:	0f be       	out	0x3f, r0	; 63
+ 200:	cd bf       	out	0x3d, r28	; 61
+ 202:	df 91       	pop	r29
+ 204:	cf 91       	pop	r28
+ 206:	1f 91       	pop	r17
+ 208:	0f 91       	pop	r16
+ 20a:	08 95       	ret
+
+0000020c <LCDdisplayAir>:
+
+void LCDdisplayAir(int speed){
+ 20c:	0f 93       	push	r16
+ 20e:	1f 93       	push	r17
+ 210:	cf 93       	push	r28
+ 212:	df 93       	push	r29
+ 214:	00 d0       	rcall	.+0      	; 0x216 <LCDdisplayAir+0xa>
+ 216:	00 d0       	rcall	.+0      	; 0x218 <LCDdisplayAir+0xc>
+ 218:	00 d0       	rcall	.+0      	; 0x21a <LCDdisplayAir+0xe>
+ 21a:	cd b7       	in	r28, 0x3d	; 61
+ 21c:	de b7       	in	r29, 0x3e	; 62
+	
+	//@todo implement individual digit check if changed check
+	
+	if(!(speed < 100 || speed > 500)){
+ 21e:	9c 01       	movw	r18, r24
+ 220:	24 56       	subi	r18, 0x64	; 100
+ 222:	31 09       	sbc	r19, r1
+ 224:	21 39       	cpi	r18, 0x91	; 145
+ 226:	31 40       	sbci	r19, 0x01	; 1
+ 228:	48 f5       	brcc	.+82     	; 0x27c <LCDdisplayAir+0x70>
+ 22a:	fe 01       	movw	r30, r28
+ 22c:	39 96       	adiw	r30, 0x09	; 9
+ 22e:	8e 01       	movw	r16, r28
+ 230:	0f 5f       	subi	r16, 0xFF	; 255
+ 232:	1f 4f       	sbci	r17, 0xFF	; 255
+		
+		int digits[3];
+		
+		for (int i = 3; i >= 0; i--) {
+			digits[i] = speed % 10;
+ 234:	2a e0       	ldi	r18, 0x0A	; 10
+ 236:	30 e0       	ldi	r19, 0x00	; 0
+ 238:	b9 01       	movw	r22, r18
+ 23a:	0e 94 c4 01 	call	0x388	; 0x388 <__divmodhi4>
+ 23e:	92 93       	st	-Z, r25
+ 240:	82 93       	st	-Z, r24
+			speed /= 10;
+ 242:	86 2f       	mov	r24, r22
+ 244:	97 2f       	mov	r25, r23
+	
+	if(!(speed < 100 || speed > 500)){
+		
+		int digits[3];
+		
+		for (int i = 3; i >= 0; i--) {
+ 246:	0e 17       	cp	r16, r30
+ 248:	1f 07       	cpc	r17, r31
+ 24a:	b1 f7       	brne	.-20     	; 0x238 <LCDdisplayAir+0x2c>
+			digits[i] = speed % 10;
+			speed /= 10;
+		}
+		
+		LCDWrite(9, numbers[digits[1]]);
+ 24c:	eb 81       	ldd	r30, Y+3	; 0x03
+ 24e:	fc 81       	ldd	r31, Y+4	; 0x04
+ 250:	ee 59       	subi	r30, 0x9E	; 158
+ 252:	ff 4f       	sbci	r31, 0xFF	; 255
+ 254:	60 81       	ld	r22, Z
+ 256:	89 e0       	ldi	r24, 0x09	; 9
+ 258:	0e 94 8a 00 	call	0x114	; 0x114 <LCDWrite>
+		LCDWrite(11, numbers[digits[2]]);
+ 25c:	ed 81       	ldd	r30, Y+5	; 0x05
+ 25e:	fe 81       	ldd	r31, Y+6	; 0x06
+ 260:	ee 59       	subi	r30, 0x9E	; 158
+ 262:	ff 4f       	sbci	r31, 0xFF	; 255
+ 264:	60 81       	ld	r22, Z
+ 266:	8b e0       	ldi	r24, 0x0B	; 11
+ 268:	0e 94 8a 00 	call	0x114	; 0x114 <LCDWrite>
+		LCDWrite(13, numbers[digits[3]]);
+ 26c:	ef 81       	ldd	r30, Y+7	; 0x07
+ 26e:	f8 85       	ldd	r31, Y+8	; 0x08
+ 270:	ee 59       	subi	r30, 0x9E	; 158
+ 272:	ff 4f       	sbci	r31, 0xFF	; 255
+ 274:	60 81       	ld	r22, Z
+ 276:	8d e0       	ldi	r24, 0x0D	; 13
+ 278:	0e 94 8a 00 	call	0x114	; 0x114 <LCDWrite>
+	}
+}
+ 27c:	26 96       	adiw	r28, 0x06	; 6
+ 27e:	0f b6       	in	r0, 0x3f	; 63
+ 280:	f8 94       	cli
+ 282:	de bf       	out	0x3e, r29	; 62
+ 284:	0f be       	out	0x3f, r0	; 63
+ 286:	cd bf       	out	0x3d, r28	; 61
+ 288:	df 91       	pop	r29
+ 28a:	cf 91       	pop	r28
+ 28c:	1f 91       	pop	r17
+ 28e:	0f 91       	pop	r16
+ 290:	08 95       	ret
+
+00000292 <LCDdrawSleepIndicators>:
+
+
+void LCDdrawSleepIndicators(){
+	
+	LCDWrite(2, 0x04);
+ 292:	64 e0       	ldi	r22, 0x04	; 4
+ 294:	82 e0       	ldi	r24, 0x02	; 2
+ 296:	0e 94 8a 00 	call	0x114	; 0x114 <LCDWrite>
+	LCDWrite(4, 0x04);
+ 29a:	64 e0       	ldi	r22, 0x04	; 4
+ 29c:	84 e0       	ldi	r24, 0x04	; 4
+ 29e:	0e 94 8a 00 	call	0x114	; 0x114 <LCDWrite>
+	LCDWrite(6, 0x04);
+ 2a2:	64 e0       	ldi	r22, 0x04	; 4
+ 2a4:	86 e0       	ldi	r24, 0x06	; 6
+ 2a6:	0e 94 8a 00 	call	0x114	; 0x114 <LCDWrite>
+	
+	LCDWrite(9, 0x04);
+ 2aa:	64 e0       	ldi	r22, 0x04	; 4
+ 2ac:	89 e0       	ldi	r24, 0x09	; 9
+ 2ae:	0e 94 8a 00 	call	0x114	; 0x114 <LCDWrite>
+	LCDWrite(11, 0x04);
+ 2b2:	64 e0       	ldi	r22, 0x04	; 4
+ 2b4:	8b e0       	ldi	r24, 0x0B	; 11
+ 2b6:	0e 94 8a 00 	call	0x114	; 0x114 <LCDWrite>
+	LCDWrite(13, 0x04);
+ 2ba:	64 e0       	ldi	r22, 0x04	; 4
+ 2bc:	8d e0       	ldi	r24, 0x0D	; 13
+ 2be:	0e 94 8a 00 	call	0x114	; 0x114 <LCDWrite>
  2c2:	08 95       	ret
 
 000002c4 <INIT>:
@@ -493,14 +493,14 @@ void BuzzerBeep(int timeMs) {
 
 void INIT(){
 	BuzzerInit();
- 2c4:	0e 94 53 01 	call	0x2a6	; 0x2a6 <BuzzerInit>
+ 2c4:	0e 94 5e 00 	call	0xbc	; 0xbc <BuzzerInit>
 	ButtonsInit();
- 2c8:	0e 94 36 01 	call	0x26c	; 0x26c <ButtonsInit>
+ 2c8:	0e 94 41 00 	call	0x82	; 0x82 <ButtonsInit>
 	
 	
 	//LCD stuff
 	LCDSetPins();
- 2cc:	0e 94 86 00 	call	0x10c	; 0x10c <LCDSetPins>
+ 2cc:	0e 94 b2 00 	call	0x164	; 0x164 <LCDSetPins>
 	sbi(PORTB, LCD_CS);
  2d0:	c3 9a       	sbi	0x18, 3	; 24
 	sbi(PORTB, LCD_WR);
@@ -516,16 +516,16 @@ void INIT(){
 	
 	delay(50);
 	LCDInit();
- 2e2:	0e 94 8a 00 	call	0x114	; 0x114 <LCDInit>
+ 2e2:	0e 94 b6 00 	call	0x16c	; 0x16c <LCDInit>
 	LCDAllSegementsOff(8);
  2e6:	88 e0       	ldi	r24, 0x08	; 8
- 2e8:	0e 94 75 00 	call	0xea	; 0xea <LCDAllSegementsOff>
+ 2e8:	0e 94 a1 00 	call	0x142	; 0x142 <LCDAllSegementsOff>
 	LCDdrawSleepIndicators();
- 2ec:	0e 94 1d 01 	call	0x23a	; 0x23a <LCDdrawSleepIndicators>
+ 2ec:	0e 94 49 01 	call	0x292	; 0x292 <LCDdrawSleepIndicators>
  2f0:	08 95       	ret
 
 000002f2 <main>:
-	
+//test var
 int temp=100;
 	
 int main()
@@ -537,7 +537,7 @@ int main()
 	{
 		if(IsButtonPressed(BTN_TMP_UP)){
  2f6:	85 e0       	ldi	r24, 0x05	; 5
- 2f8:	0e 94 3e 01 	call	0x27c	; 0x27c <IsButtonPressed>
+ 2f8:	0e 94 49 00 	call	0x92	; 0x92 <IsButtonPressed>
  2fc:	89 2b       	or	r24, r25
  2fe:	79 f0       	breq	.+30     	; 0x31e <main+0x2c>
 			temp++;
@@ -547,15 +547,15 @@ int main()
  30a:	90 93 61 00 	sts	0x0061, r25	; 0x800061 <__DATA_REGION_ORIGIN__+0x1>
  30e:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <__DATA_REGION_ORIGIN__>
 			LCDdisplayTemp(temp);
- 312:	0e 94 97 00 	call	0x12e	; 0x12e <LCDdisplayTemp>
+ 312:	0e 94 c3 00 	call	0x186	; 0x186 <LCDdisplayTemp>
 			BuzzerBeep(100);
  316:	84 e6       	ldi	r24, 0x64	; 100
  318:	90 e0       	ldi	r25, 0x00	; 0
- 31a:	0e 94 55 01 	call	0x2aa	; 0x2aa <BuzzerBeep>
+ 31a:	0e 94 60 00 	call	0xc0	; 0xc0 <BuzzerBeep>
 		}
 		if(IsButtonPressed(BTN_TMP_DOWN)){
  31e:	86 e0       	ldi	r24, 0x06	; 6
- 320:	0e 94 3e 01 	call	0x27c	; 0x27c <IsButtonPressed>
+ 320:	0e 94 49 00 	call	0x92	; 0x92 <IsButtonPressed>
  324:	89 2b       	or	r24, r25
  326:	79 f0       	breq	.+30     	; 0x346 <main+0x54>
 			temp--;
@@ -565,15 +565,15 @@ int main()
  332:	90 93 61 00 	sts	0x0061, r25	; 0x800061 <__DATA_REGION_ORIGIN__+0x1>
  336:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <__DATA_REGION_ORIGIN__>
 			LCDdisplayTemp(temp);
- 33a:	0e 94 97 00 	call	0x12e	; 0x12e <LCDdisplayTemp>
+ 33a:	0e 94 c3 00 	call	0x186	; 0x186 <LCDdisplayTemp>
 			BuzzerBeep(100);
  33e:	84 e6       	ldi	r24, 0x64	; 100
  340:	90 e0       	ldi	r25, 0x00	; 0
- 342:	0e 94 55 01 	call	0x2aa	; 0x2aa <BuzzerBeep>
+ 342:	0e 94 60 00 	call	0xc0	; 0xc0 <BuzzerBeep>
 		}
 		if(IsButtonPressed(BTN_AIR_UP)){
  346:	84 e0       	ldi	r24, 0x04	; 4
- 348:	0e 94 3e 01 	call	0x27c	; 0x27c <IsButtonPressed>
+ 348:	0e 94 49 00 	call	0x92	; 0x92 <IsButtonPressed>
  34c:	89 2b       	or	r24, r25
  34e:	59 f0       	breq	.+22     	; 0x366 <main+0x74>
 			temp++;
@@ -583,11 +583,11 @@ int main()
  35a:	90 93 61 00 	sts	0x0061, r25	; 0x800061 <__DATA_REGION_ORIGIN__+0x1>
  35e:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <__DATA_REGION_ORIGIN__>
 			LCDdisplayAir(temp);
- 362:	0e 94 da 00 	call	0x1b4	; 0x1b4 <LCDdisplayAir>
+ 362:	0e 94 06 01 	call	0x20c	; 0x20c <LCDdisplayAir>
 		}
 		if(IsButtonPressed(BTN_AIR_DOWN)){
  366:	83 e0       	ldi	r24, 0x03	; 3
- 368:	0e 94 3e 01 	call	0x27c	; 0x27c <IsButtonPressed>
+ 368:	0e 94 49 00 	call	0x92	; 0x92 <IsButtonPressed>
  36c:	89 2b       	or	r24, r25
  36e:	19 f2       	breq	.-122    	; 0x2f6 <main+0x4>
 			temp--;
@@ -597,7 +597,7 @@ int main()
  37a:	90 93 61 00 	sts	0x0061, r25	; 0x800061 <__DATA_REGION_ORIGIN__+0x1>
  37e:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <__DATA_REGION_ORIGIN__>
 			LCDdisplayAir(temp);
- 382:	0e 94 da 00 	call	0x1b4	; 0x1b4 <LCDdisplayAir>
+ 382:	0e 94 06 01 	call	0x20c	; 0x20c <LCDdisplayAir>
  386:	b7 cf       	rjmp	.-146    	; 0x2f6 <main+0x4>
 
 00000388 <__divmodhi4>:

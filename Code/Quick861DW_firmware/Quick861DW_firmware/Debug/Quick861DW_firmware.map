@@ -1,11 +1,11 @@
 Archive member included to satisfy reference by file (symbol)
 
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_divmodhi4.o)
-                              LCD.o (__divmodhi4)
+                              Libs/LCD/LCD.o (__divmodhi4)
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
                               C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega16/avr5/crtatmega16.o (exit)
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_copy_data.o)
-                              LCD.o (__do_copy_data)
+                              Libs/LCD/LCD.o (__do_copy_data)
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodhi4.o)
                               c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_divmodhi4.o) (__udivmodhi4)
 
@@ -13,23 +13,23 @@ Discarded input sections
 
  .data          0x00000000        0x0 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega16/avr5/crtatmega16.o
  .bss           0x00000000        0x0 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega16/avr5/crtatmega16.o
- .text          0x00000000        0x0 LCD.o
- .data          0x00000000        0x0 LCD.o
- .bss           0x00000000        0x0 LCD.o
- .text.LCDAllSegementsOn
-                0x00000000       0x22 LCD.o
- .text.LCDdisplayDigit
-                0x00000000       0x1e LCD.o
- .text.LCDdisplayTempType
-                0x00000000       0x18 LCD.o
- .text.LCDSleep
-                0x00000000        0xc LCD.o
  .text          0x00000000        0x0 Libs/Buttons/Buttons.o
  .data          0x00000000        0x0 Libs/Buttons/Buttons.o
  .bss           0x00000000        0x0 Libs/Buttons/Buttons.o
  .text          0x00000000        0x0 Libs/Buzzer/Buzzer.o
  .data          0x00000000        0x0 Libs/Buzzer/Buzzer.o
  .bss           0x00000000        0x0 Libs/Buzzer/Buzzer.o
+ .text          0x00000000        0x0 Libs/LCD/LCD.o
+ .data          0x00000000        0x0 Libs/LCD/LCD.o
+ .bss           0x00000000        0x0 Libs/LCD/LCD.o
+ .text.LCDAllSegementsOn
+                0x00000000       0x22 Libs/LCD/LCD.o
+ .text.LCDdisplayDigit
+                0x00000000       0x1e Libs/LCD/LCD.o
+ .text.LCDdisplayTempType
+                0x00000000       0x18 Libs/LCD/LCD.o
+ .text.LCDSleep
+                0x00000000        0xc Libs/LCD/LCD.o
  .text          0x00000000        0x0 Libs/Memory/Memory.o
  .data          0x00000000        0x0 Libs/Memory/Memory.o
  .bss           0x00000000        0x0 Libs/Memory/Memory.o
@@ -129,9 +129,9 @@ user_signatures  0x00850000         0x00000400         rw !x
 Linker script and memory map
 
 LOAD C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega16/avr5/crtatmega16.o
-LOAD LCD.o
 LOAD Libs/Buttons/Buttons.o
 LOAD Libs/Buzzer/Buzzer.o
+LOAD Libs/LCD/LCD.o
 LOAD Libs/Memory/Memory.o
 LOAD Libs/Temperature/Temperature.o
 LOAD main.o
@@ -324,44 +324,44 @@ END GROUP
                 0x0000007e                __vector_20
                 0x00000082                . = ALIGN (0x2)
  *(.text.*)
- .text.LCDSendBit
-                0x00000082       0x1e LCD.o
-                0x00000082                LCDSendBit
- .text.LCDSendCmd
-                0x000000a0       0x1c LCD.o
-                0x000000a0                LCDSendCmd
- .text.LCDWrite
-                0x000000bc       0x2e LCD.o
-                0x000000bc                LCDWrite
- .text.LCDAllSegementsOff
-                0x000000ea       0x22 LCD.o
-                0x000000ea                LCDAllSegementsOff
- .text.LCDSetPins
-                0x0000010c        0x8 LCD.o
-                0x0000010c                LCDSetPins
- .text.LCDInit  0x00000114       0x1a LCD.o
-                0x00000114                LCDInit
- .text.LCDdisplayTemp
-                0x0000012e       0x86 LCD.o
-                0x0000012e                LCDdisplayTemp
- .text.LCDdisplayAir
-                0x000001b4       0x86 LCD.o
-                0x000001b4                LCDdisplayAir
- .text.LCDdrawSleepIndicators
-                0x0000023a       0x32 LCD.o
-                0x0000023a                LCDdrawSleepIndicators
  .text.ButtonsInit
-                0x0000026c       0x10 Libs/Buttons/Buttons.o
-                0x0000026c                ButtonsInit
+                0x00000082       0x10 Libs/Buttons/Buttons.o
+                0x00000082                ButtonsInit
  .text.IsButtonPressed
-                0x0000027c       0x2a Libs/Buttons/Buttons.o
-                0x0000027c                IsButtonPressed
+                0x00000092       0x2a Libs/Buttons/Buttons.o
+                0x00000092                IsButtonPressed
  .text.BuzzerInit
-                0x000002a6        0x4 Libs/Buzzer/Buzzer.o
-                0x000002a6                BuzzerInit
+                0x000000bc        0x4 Libs/Buzzer/Buzzer.o
+                0x000000bc                BuzzerInit
  .text.BuzzerBeep
-                0x000002aa       0x1a Libs/Buzzer/Buzzer.o
-                0x000002aa                BuzzerBeep
+                0x000000c0       0x1a Libs/Buzzer/Buzzer.o
+                0x000000c0                BuzzerBeep
+ .text.LCDSendBit
+                0x000000da       0x1e Libs/LCD/LCD.o
+                0x000000da                LCDSendBit
+ .text.LCDSendCmd
+                0x000000f8       0x1c Libs/LCD/LCD.o
+                0x000000f8                LCDSendCmd
+ .text.LCDWrite
+                0x00000114       0x2e Libs/LCD/LCD.o
+                0x00000114                LCDWrite
+ .text.LCDAllSegementsOff
+                0x00000142       0x22 Libs/LCD/LCD.o
+                0x00000142                LCDAllSegementsOff
+ .text.LCDSetPins
+                0x00000164        0x8 Libs/LCD/LCD.o
+                0x00000164                LCDSetPins
+ .text.LCDInit  0x0000016c       0x1a Libs/LCD/LCD.o
+                0x0000016c                LCDInit
+ .text.LCDdisplayTemp
+                0x00000186       0x86 Libs/LCD/LCD.o
+                0x00000186                LCDdisplayTemp
+ .text.LCDdisplayAir
+                0x0000020c       0x86 Libs/LCD/LCD.o
+                0x0000020c                LCDdisplayAir
+ .text.LCDdrawSleepIndicators
+                0x00000292       0x32 Libs/LCD/LCD.o
+                0x00000292                LCDdrawSleepIndicators
  .text.INIT     0x000002c4       0x2e main.o
                 0x000002c4                INIT
  .text.main     0x000002f2       0x96 main.o
@@ -410,7 +410,7 @@ END GROUP
  *(.rodata)
  *(.rodata*)
  .rodata.numbers
-                0x00800062        0xa LCD.o
+                0x00800062        0xa Libs/LCD/LCD.o
                 0x00800062                numbers
  *(.gnu.linkonce.r*)
                 0x0080006c                . = ALIGN (0x2)
@@ -472,10 +472,10 @@ END GROUP
 
 .comment        0x00000000       0x30
  *(.comment)
- .comment       0x00000000       0x30 LCD.o
+ .comment       0x00000000       0x30 Libs/Buttons/Buttons.o
                                  0x31 (size before relaxing)
- .comment       0x00000030       0x31 Libs/Buttons/Buttons.o
  .comment       0x00000030       0x31 Libs/Buzzer/Buzzer.o
+ .comment       0x00000030       0x31 Libs/LCD/LCD.o
  .comment       0x00000030       0x31 main.o
 
 .note.gnu.avr.deviceinfo
@@ -501,11 +501,11 @@ END GROUP
 .debug_aranges  0x00000000       0xf8
  *(.debug_aranges)
  .debug_aranges
-                0x00000000       0x80 LCD.o
+                0x00000000       0x28 Libs/Buttons/Buttons.o
  .debug_aranges
-                0x00000080       0x28 Libs/Buttons/Buttons.o
+                0x00000028       0x28 Libs/Buzzer/Buzzer.o
  .debug_aranges
-                0x000000a8       0x28 Libs/Buzzer/Buzzer.o
+                0x00000050       0x80 Libs/LCD/LCD.o
  .debug_aranges
                 0x000000d0       0x28 main.o
 
@@ -515,51 +515,51 @@ END GROUP
 .debug_info     0x00000000      0xff5
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x52e C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega16/avr5/crtatmega16.o
- .debug_info    0x0000052e      0x5ab LCD.o
- .debug_info    0x00000ad9      0x137 Libs/Buttons/Buttons.o
- .debug_info    0x00000c10      0x129 Libs/Buzzer/Buzzer.o
+ .debug_info    0x0000052e      0x137 Libs/Buttons/Buttons.o
+ .debug_info    0x00000665      0x129 Libs/Buzzer/Buzzer.o
+ .debug_info    0x0000078e      0x5ab Libs/LCD/LCD.o
  .debug_info    0x00000d39      0x2bc main.o
 
 .debug_abbrev   0x00000000      0x949
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x4e7 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega16/avr5/crtatmega16.o
- .debug_abbrev  0x000004e7      0x171 LCD.o
- .debug_abbrev  0x00000658       0xde Libs/Buttons/Buttons.o
- .debug_abbrev  0x00000736       0xde Libs/Buzzer/Buzzer.o
+ .debug_abbrev  0x000004e7       0xde Libs/Buttons/Buttons.o
+ .debug_abbrev  0x000005c5       0xde Libs/Buzzer/Buzzer.o
+ .debug_abbrev  0x000006a3      0x171 Libs/LCD/LCD.o
  .debug_abbrev  0x00000814      0x135 main.o
 
-.debug_line     0x00000000      0x8e3
+.debug_line     0x00000000      0x8f8
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x115 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega16/avr5/crtatmega16.o
- .debug_line    0x00000115      0x32c LCD.o
- .debug_line    0x00000441      0x16b Libs/Buttons/Buttons.o
- .debug_line    0x000005ac      0x145 Libs/Buzzer/Buzzer.o
- .debug_line    0x000006f1      0x1f2 main.o
+ .debug_line    0x00000115      0x16b Libs/Buttons/Buttons.o
+ .debug_line    0x00000280      0x145 Libs/Buzzer/Buzzer.o
+ .debug_line    0x000003c5      0x333 Libs/LCD/LCD.o
+ .debug_line    0x000006f8      0x200 main.o
 
 .debug_frame    0x00000000      0x1e4
  *(.debug_frame)
- .debug_frame   0x00000000      0x148 LCD.o
- .debug_frame   0x00000148       0x34 Libs/Buttons/Buttons.o
- .debug_frame   0x0000017c       0x34 Libs/Buzzer/Buzzer.o
+ .debug_frame   0x00000000       0x34 Libs/Buttons/Buttons.o
+ .debug_frame   0x00000034       0x34 Libs/Buzzer/Buzzer.o
+ .debug_frame   0x00000068      0x148 Libs/LCD/LCD.o
  .debug_frame   0x000001b0       0x34 main.o
 
-.debug_str      0x00000000      0x4d1
+.debug_str      0x00000000      0x4d8
  *(.debug_str)
  .debug_str     0x00000000      0x1af C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega16/avr5/crtatmega16.o
- .debug_str     0x000001af      0x24d LCD.o
-                                0x28b (size before relaxing)
- .debug_str     0x000003fc       0x8a Libs/Buttons/Buttons.o
+ .debug_str     0x000001af      0x1d1 Libs/Buttons/Buttons.o
                                 0x205 (size before relaxing)
- .debug_str     0x00000486       0x35 Libs/Buzzer/Buzzer.o
+ .debug_str     0x00000380       0x35 Libs/Buzzer/Buzzer.o
                                 0x1fb (size before relaxing)
- .debug_str     0x000004bb       0x16 main.o
+ .debug_str     0x000003b5      0x10d Libs/LCD/LCD.o
+                                0x292 (size before relaxing)
+ .debug_str     0x000004c2       0x16 main.o
                                 0x26d (size before relaxing)
 
 .debug_loc      0x00000000      0x63d
  *(.debug_loc)
- .debug_loc     0x00000000      0x4f2 LCD.o
- .debug_loc     0x000004f2       0x80 Libs/Buttons/Buttons.o
- .debug_loc     0x00000572       0x85 Libs/Buzzer/Buzzer.o
+ .debug_loc     0x00000000       0x80 Libs/Buttons/Buttons.o
+ .debug_loc     0x00000080       0x85 Libs/Buzzer/Buzzer.o
+ .debug_loc     0x00000105      0x4f2 Libs/LCD/LCD.o
  .debug_loc     0x000005f7       0x46 main.o
 
 .debug_macinfo
@@ -582,9 +582,9 @@ END GROUP
 
 .debug_ranges   0x00000000       0xb8
  *(.debug_ranges)
- .debug_ranges  0x00000000       0x70 LCD.o
- .debug_ranges  0x00000070       0x18 Libs/Buttons/Buttons.o
- .debug_ranges  0x00000088       0x18 Libs/Buzzer/Buzzer.o
+ .debug_ranges  0x00000000       0x18 Libs/Buttons/Buttons.o
+ .debug_ranges  0x00000018       0x18 Libs/Buzzer/Buzzer.o
+ .debug_ranges  0x00000030       0x70 Libs/LCD/LCD.o
  .debug_ranges  0x000000a0       0x18 main.o
 
 .debug_macro

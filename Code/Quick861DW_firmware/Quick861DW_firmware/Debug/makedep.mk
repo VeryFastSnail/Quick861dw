@@ -2,11 +2,11 @@
 # Automatically-generated file. Do not edit or delete the file
 ################################################################################
 
-LCD.c
-
 Libs\Buttons\Buttons.c
 
 Libs\Buzzer\Buzzer.c
+
+Libs\LCD\LCD.c
 
 Libs\Memory\Memory.c
 
