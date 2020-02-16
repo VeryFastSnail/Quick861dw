@@ -128,6 +128,12 @@
     <Compile Include="global.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Libs\Air\Air.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Libs\Air\Air.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Libs\Buttons\Buttons.c">
       <SubType>compile</SubType>
     </Compile>
@@ -152,6 +158,12 @@
     <Compile Include="Libs\Memory\Memory.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Libs\Motor\Motor.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Libs\Motor\Motor.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Libs\Temperature\Temperature.c">
       <SubType>compile</SubType>
     </Compile>
@@ -168,6 +180,8 @@
     <Folder Include="Libs\Buzzer" />
     <Folder Include="Libs\Memory" />
     <Folder Include="Libs\LCD" />
+    <Folder Include="Libs\Motor" />
+    <Folder Include="Libs\Air" />
     <Folder Include="Libs\Temperature" />
   </ItemGroup>
   <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />

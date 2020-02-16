@@ -4,6 +4,7 @@
 #include "Buttons.h"
 
 
+volatile uint8_t buttons_down;
 
 void ButtonsInit(){
 	
@@ -22,10 +23,22 @@ void ButtonsInit(){
 	sbi(PORTC, BTN_PST_1);
 }
 
-int IsButtonPressed(uint8_t btn){
-	if (bit_is_clear(BTN_PIN, btn)){
-		delay(BTN_DEBOUNCE);
-		return 1;
-	}
-	return 0;
+
+void debounce(){
+	
+	uint8_t countHigh = 0xff, countLow = 0xff;
+	static uint8_t buttonsState = 0;
+	
+	uint8_t state_changed = ~BTN_PIN ^ buttonsState;
+	
+	state_changed &= countLow & countHigh;// Change button_state for the buttons who’s counters rolled over
+	buttonsState ^= state_changed;
+	
+	buttons_down |= buttonsState & state_changed;
+}
+
+uint8_t buttonDown(uint8_t mask){
+	mask &= buttons_down;
+	buttons_down ^= mask;
+	return mask;
 }

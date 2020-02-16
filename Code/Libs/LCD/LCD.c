@@ -1,10 +1,18 @@
 #include "../../global.h"
 #include <avr/io.h>
 #include "LCD.h"
+#include "../Air/Air.h"
+#include <math.h>
+
 
 const char numbers[10] = {0xFA, 0x0A, 0xBC, 0x9E, 0x4E, 0xD6, 0xF6, 0x8A, 0xFE, 0xDE};
 	
 #define TempType		1;
+
+int countDigits(int number){
+	return floor(log10(abs(number))) + 1;
+}
+
 
 void LCDSendBit(uchar sdata,uchar cnt)
 {
@@ -103,21 +111,18 @@ void LCDdisplayTemp(int temp){
 
 void LCDdisplayAir(int speed){
 	
-	//@todo implement individual digit check if changed check
-	
-	if(!(speed < 100 || speed > 500)){
+		int qty = countDigits(speed);
+		int digits[3] = {0,0,0};
 		
-		int digits[3];
-		
-		for (int i = 3; i >= 0; i--) {
+		for (int i = 0; i <= qty; i++) {
 			digits[i] = speed % 10;
 			speed /= 10;
 		}
 		
-		LCDWrite(9, numbers[digits[1]]);
-		LCDWrite(11, numbers[digits[2]]);
-		LCDWrite(13, numbers[digits[3]]);
-	}
+			LCDWrite(9, numbers[digits[2]]);
+			LCDWrite(11, numbers[digits[1]]);
+			LCDWrite(13, numbers[digits[0]]);
+	
 }
 
 

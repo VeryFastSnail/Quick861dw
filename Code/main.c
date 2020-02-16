@@ -4,20 +4,46 @@
 #include <avr/interrupt.h>
 #include <util/delay.h>
 #include "Libs/LCD/LCD.h"
+#include "Libs/Air/Air.h"
 #include "Libs/Buzzer/Buzzer.h"
 #include "Libs/Buttons/Buttons.h"
-	
-int temp=100;
+#include "Libs/Motor/Motor.h"
 
+
+int temp=100;
+int tempr = 0;
 int main()
 {
 	INIT();
 	
-	sei();
-	
 	while (1)
 	{
+		debounce();
 		
+		/*if(buttonDown(BTN_TMP_DOWN)){
+			if(temp > 100 || temp < 500){
+				temp -= 1;
+				LCDdisplayTemp(temp);
+				BuzzerBeep(20);	
+			}
+		}
+		if(buttonDown(BTN_TMP_UP)){
+			if(temp > 100 || temp < 500){
+				temp += 1;
+				LCDdisplayTemp(temp);
+				BuzzerBeep(20);
+			}
+		}
+		
+		*/
+		
+		
+		if(buttonDown(BTN_AIR_UP)){
+			increaseAirSpeed(1);
+		}
+		if(buttonDown(BTN_AIR_DOWN)){
+			decreaseAirSpeed(1);
+		}
 	}
 	return 0;
 }
@@ -38,16 +64,5 @@ void INIT(){
 	LCDInit();
 	LCDAllSegementsOff(8);
 	LCDdrawSleepIndicators();
-	
-	//Timmer for button polling
-	
-	TCCR0 |= (1 << WGM01) | (1 << CS02) | (1 << CS00);
-	OCR0 |= 20;
-	
-	
-	
-}
-
-ISR(TIMER0_COMP_vect){
 	
 }
