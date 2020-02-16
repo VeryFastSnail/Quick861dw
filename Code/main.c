@@ -8,31 +8,16 @@
 #include "Libs/Buttons/Buttons.h"
 	
 int temp=100;
-	
+
 int main()
 {
 	INIT();
 	
+	sei();
+	
 	while (1)
 	{
-		if(IsButtonPressed(BTN_TMP_UP)){
-			temp++;
-			LCDdisplayTemp(temp);
-			BuzzerBeep(100);
-		}
-		if(IsButtonPressed(BTN_TMP_DOWN)){
-			temp--;
-			LCDdisplayTemp(temp);
-			BuzzerBeep(100);
-		}
-		if(IsButtonPressed(BTN_AIR_UP)){
-			temp++;
-			LCDdisplayAir(temp);
-		}
-		if(IsButtonPressed(BTN_AIR_DOWN)){
-			temp--;
-			LCDdisplayAir(temp);
-		}
+		
 	}
 	return 0;
 }
@@ -53,4 +38,16 @@ void INIT(){
 	LCDInit();
 	LCDAllSegementsOff(8);
 	LCDdrawSleepIndicators();
+	
+	//Timmer for button polling
+	
+	TCCR0 |= (1 << WGM01) | (1 << CS02) | (1 << CS00);
+	OCR0 |= 20;
+	
+	
+	
+}
+
+ISR(TIMER0_COMP_vect){
+	
 }

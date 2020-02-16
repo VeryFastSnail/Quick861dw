@@ -22,6 +22,7 @@
 #define BTN_DEBOUNCE				30
 #define BTN_PIN						PINC
 
+#define BTN_LNG_PRESS				2000
 
 void	ButtonsInit();
 int		IsButtonPressed(uint8_t btn);
