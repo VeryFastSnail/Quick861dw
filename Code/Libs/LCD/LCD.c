@@ -92,8 +92,6 @@ void LCDdisplayDigit(int digit, int address){
 
 void LCDdisplayTemp(int temp){
 			
-	//@todo implement individual digit check if changed check
-	
 	if(!(temp < 100 || temp > 500)){
 		
 		int digits[3];

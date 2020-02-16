@@ -3,7 +3,7 @@
 #include "../Buzzer/Buzzer.h"
 #include "Air.h"
 
-int airSpeed = 89;
+int airSpeed = 5;
 
 int getAirSpeed(){
 	return airSpeed;
@@ -21,7 +21,7 @@ void increaseAirSpeed(int number){
 	}
 }
 void decreaseAirSpeed(int number){
-	if(getAirSpeed()-number > AIR_CAP_LOW){
+	if(getAirSpeed()-number >= AIR_CAP_LOW){
 		airSpeed -= number;
 		LCDdisplayAir(airSpeed);
 		BuzzerBeep(20);

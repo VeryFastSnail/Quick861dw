@@ -18,6 +18,7 @@ int main()
 	
 	while (1)
 	{
+		//@todo debouce buttons on timer0
 		debounce();
 		
 		/*if(buttonDown(BTN_TMP_DOWN)){
@@ -44,6 +45,13 @@ int main()
 		if(buttonDown(BTN_AIR_DOWN)){
 			decreaseAirSpeed(1);
 		}
+		if(buttonDown(BTN_TMP_UP)){
+			increaseTemperature(1);
+		}
+		if(buttonDown(BTN_TMP_DOWN)){
+			decreaseTemperature(1);
+		}
+		
 	}
 	return 0;
 }
