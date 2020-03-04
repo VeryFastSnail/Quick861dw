@@ -5,36 +5,43 @@
 #include "../Temperature/Temperature.h"
 
 
-double duty = 50;
+double	dutyCycle		= 50;
+double	newDutyCycle	= -1;
+int		speed			= 0;
 
 void MotorInit(){
-	sbi(MOTOR_PWM_P, MOTOR_PWM);
+	//sbi(MOTOR_PWM_P, MOTOR_PWM);
 	
 	//set PWM
-	
-	TCCR0 |= (1 << WGM01) | (1 << WGM00) | (1 << COM01);
-	
-	TIMSK |= (1 << TOIE0);
-	
-	OCR0 = (duty/100)*255;
+	/*TCCR1A = (1 << COM1B1) | (1 << COM1B0) | (1 << COM1B1) | (1 << WGM10) | (1 << WGM11);
+	TCCR1B = (1 << WGM12) | (1 << CS11) | (1 << CS10);
+	OCR1BH = 512;
 	
 	sei();
-	
-	TCCR0 |= (1 << CS00);
-	
-	
+	*/
 	//set ADC
 	//ADMUX &= ~(1 << REFS1) | (1 << REFS0);
 	
 }
 
 void setDutyCycle(double percent){
-	duty = percent;
+	//duty = percent;
+}
+
+void setMotorSpeedByAir(int airSpeed){
+	dutyCycle = getMotorSpeedProportion(airSpeed);
+}
+
+int getMotorSpeedProportion(int airSpeed){
+	if(airSpeed <=0 || airSpeed >= 100){
+		return 0;
+	}
+	return (airSpeed*1023)/100;
 }
 
 ISR(TIMER0_OVF_vect)
 {
-	OCR0 = (duty/100)*255;
+	//OCR0 = (duty/100)*255;
 }
 
 
@@ -42,22 +49,14 @@ int readMotorEncoder(){
 	
 }
 
-void rampUpMotor(){
-	
+void rampUpMotor(int airSpeed){
+	newDutyCycle = getMotorSpeedProportion(airSpeed);
 }
 
 void rampDownMotor(){
-	
+	newDutyCycle = 0;
 }
 
 void stopMotor(){
-	
-}
-
-void enableADC(){
-	ADCSRA |= (1 << ADEN);
-}
-
-void disableADC(){
-	ADCSRA &= ~(1 << ADEN);
+	dutyCycle = 0;
 }

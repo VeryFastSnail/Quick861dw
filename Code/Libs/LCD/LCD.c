@@ -2,6 +2,7 @@
 #include <avr/io.h>
 #include "LCD.h"
 #include "../Air/Air.h"
+#include "../Temperature/Temperature.h"
 #include <math.h>
 
 
@@ -148,4 +149,10 @@ void LCDdisplayTempType(int type){
 void LCDSleep(){
 	LCDAllSegementsOff(8);
 	LCDdrawSleepIndicators();
+}
+
+void LCDWakeUp(){
+	LCDAllSegementsOff(8);
+	LCDdisplayTemp(getTemperature());
+	LCDdisplayAir(getAirSpeed());
 }

@@ -29,6 +29,7 @@ void LCDdisplayAir(int speed);
 void LCDdrawSleepIndicators();
 void LCDdisplayTempType(int type);
 int countDigits(int number);
-
+void LCDWakeUp();
+void LCDSleep();
 #endif
 

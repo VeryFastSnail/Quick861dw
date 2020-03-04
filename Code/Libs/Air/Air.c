@@ -17,13 +17,13 @@ void increaseAirSpeed(int number){
 	if(getAirSpeed()+number <= AIR_CAP_HIGH){
 		airSpeed += number;
 		LCDdisplayAir(airSpeed);
-		BuzzerBeep(20);
+		BuzzerBeep(BUTTON_PRESS_BEEP_DURATION);
 	}
 }
 void decreaseAirSpeed(int number){
 	if(getAirSpeed()-number >= AIR_CAP_LOW){
 		airSpeed -= number;
 		LCDdisplayAir(airSpeed);
-		BuzzerBeep(20);
+		BuzzerBeep(BUTTON_PRESS_BEEP_DURATION);
 	}
 }

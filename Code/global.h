@@ -18,4 +18,10 @@
 (!(_SFR_BYTE(sfr) & _BV(bit)))
 
 
+//config
+
+#define BUTTON_PRESS_BEEP_DURATION				20
+#define EEPROM_SAVE_PERIOD_SEC					10
+						
+
 #endif 
