@@ -6,7 +6,7 @@ This REPO is a place for developers to get better firmware for quick 861DW hot a
 I had my station stopped working on me one night and I found out that main issue of it was that micro controller was bad, since quick team used atmega16a and internal flash for it's firmware I was stuck with a glory peace of metal just sitting there. So I ordered few Attiny16a micro controllers and started experimenting with dead maijn board. 
  
  **What are my plans?**
-I already started to reverse engineer main board. It's quite simple, mcu is used to control triac and triac controls 24v AC signal to heater inside the gun. Temperature is sensed from the tip and OP07C opamp is used to amplify it. then signal is carried directly to the MCU. Long story short it's quite simple hardware, but the firmware is the key.
+I already started to reverse engineer main board. It's quite simple, mcu is used to control triac and triac controls 240v AC signal to heater inside the gun. Temperature is sensed from the tip and OP07C opamp is used to amplify it. then signal is carried directly to the MCU. Long story short it's quite simple hardware, but the firmware is the key.
 
 **What is the advantages?**
 Quick 861DW is cheap (sub $300) and it's great value for the money. But there are some thing to be approved. So while designing our own firmware we can include what ever we want. For example it has a beeper, that beeps every time station boots, I hate it. So while creating station firmware It could be disabled, or enabled with help of configuration menu in service buttons combination.
